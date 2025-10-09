@@ -13,6 +13,7 @@ botaoCalcular.addEventListener('click', calcular);
 // --- 3. A FUNÇÃO PRINCIPAL: CALCULAR ---
 function calcular() {
     // Pegar os valores dos inputs e converter para números inteiros
+    // O '|| 0' garante que se o campo estiver vazio, ele será considerado como zero.
     const numHomens = parseInt(inputHomens.value) || 0;
     const numMulheres = parseInt(inputMulheres.value) || 0;
     const numCriancas = parseInt(inputCriancas.value) || 0;
@@ -43,7 +44,7 @@ function calcular() {
     // Limpa a lista de resultados anterior para evitar duplicatas
     listaResultados.innerHTML = '';
     
-    // Cria os itens da lista e os insere no HTML
+    // Cria os itens da lista e os insere no HTML usando Template Literals (crases ``)
     listaResultados.innerHTML += `<li>Carne Bovina: <strong>${totalCarne.toFixed(2)} kg</strong></li>`;
     listaResultados.innerHTML += `<li>Linguiça: <strong>${totalLinguica.toFixed(2)} kg</strong></li>`;
     listaResultados.innerHTML += `<li>Pão de Alho: <strong>${totalPaoDeAlho} unidades</strong></li>`;
