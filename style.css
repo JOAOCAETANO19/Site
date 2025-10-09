@@ -1,112 +1,117 @@
-/* --- ESTILOS GERAIS DA PÁGINA --- */
-
 body {
-    background-color: #1a1a2e; 
-    color: #e0e0e0; 
-    font-family: Arial, sans-serif; 
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
-    margin: 0; 
-    text-align: center; 
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
-
-/* --- O CONTAINER PRINCIPAL --- */
 
 .container {
-    max-width: 600px; 
-    padding: 40px; 
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
 }
 
-/* --- TÍTULOS E TEXTOS --- */
-
 h1 {
-    font-family: 'Cinzel', serif; 
-    font-size: 3em; 
-    color: #f7b733; 
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
-    
-    /* APLICA A ANIMAÇÃO DE ENTRADA AO TÍTULO */
-    animation: fadeInUp 1s ease-out forwards;
+    color: #c0392b;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 1.1em;
-    color: #c0c0c0;
-    margin-bottom: 40px;
+    color: #777;
+    margin-bottom: 30px;
 }
 
-/* --- O BOTÃO "MÁGICO" --- */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+input {
+    width: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2em;
+    -moz-appearance: textfield; /* Remove setas em Firefox */
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Remove setas em Chrome, Safari, etc. */
+  margin: 0;
+}
+
 
 button {
-    font-family: 'Cinzel', serif;
-    background: linear-gradient(45deg, #f7b733, #fc4a1a);
-    color: #1a1a2e; 
+    width: 100%;
+    padding: 15px;
+    background-color: #e74c3c;
+    color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 50px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s; 
-    box-shadow: 0 4px 15px rgba(247, 183, 51, 0.4); 
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 6px 20px rgba(247, 183, 51, 0.6); 
+    background-color: #c0392b;
+}
+button:active {
+    transform: scale(0.98);
 }
 
-/* --- ÁREA DE RESULTADO DA HISTÓRIA --- */
+#areaResultado {
+    margin-top: 30px;
+    text-align: left;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
 
-#historiaGerada {
-    margin-top: 40px;
-    background-color: rgba(255, 255, 255, 0.05); 
-    padding: 20px;
-    border-radius: 10px;
-    min-height: 100px;
+#areaResultado.hidden {
+    display: none;
+}
+
+#listaResultados {
+    list-style: none;
+    padding: 0;
+}
+
+#listaResultados li {
+    background-color: #fafafa;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 1.1em;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #f7b733; 
+    justify-content: space-between;
 }
 
-#historiaGerada p {
-    font-size: 1.4em;
-    line-height: 1.6;
-}
-
-.placeholder {
-    color: #888;
-    font-style: italic;
-}
-
-/* --- NOSSAS ANIMAÇÕES CUSTOMIZADAS (KEYFRAMES) --- */
-
-/* Animação 1: Para o Título (Surgindo de baixo para cima) */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Animação 2: Para o Texto do Resultado (Surgindo suavemente) */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Classe que será adicionada via JS para ativar a animação de resultado */
-.animar-resultado {
-    animation: fadeIn 0.8s ease-in;
+#listaResultados li strong {
+    color: #e74c3c;
 }

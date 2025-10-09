@@ -3,22 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Gerador de Aventuras</title>
+    <title>Calculadora de Churrasco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <main class="container">
-        <h1>O Gerador de Aventuras</h1>
-        <p class="subtitle">Sem ideias para sua próxima história? Clique no botão e deixe o destino decidir!</p>
-        
-        <button id="gerarBtn">Forjar uma Nova Lenda</button>
+        <h1>Planejador de Churrasco</h1>
+        <p class="subtitle">Nunca mais erre na quantidade!</p>
 
-        <div id="historiaGerada">
-            <p class="placeholder">Sua próxima grande aventura aparecerá aqui...</p>
+        <div class="input-grid">
+            <div class="input-group">
+                <label for="homens">Homens:</label>
+                <input type="number" id="homens" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="mulheres">Mulheres:</label>
+                <input type="number" id="mulheres" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="criancas">Crianças:</label>
+                <input type="number" id="criancas" value="0" min="0">
+            </div>
+        </div>
+
+        <button id="calcularBtn">Calcular Quantidades</button>
+
+        <div id="areaResultado" class="hidden">
+            <h2>Lista de Compras Sugerida:</h2>
+            <ul id="listaResultados">
+                </ul>
         </div>
     </main>
 

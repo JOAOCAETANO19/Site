@@ -1,64 +1,55 @@
-// Seleciona os elementos do HTML
-const botaoGerar = document.getElementById('gerarBtn');
-const divHistoria = document.getElementById('historiaGerada');
+// --- 1. SELEÇÃO DOS ELEMENTOS DO HTML ---
+const inputHomens = document.getElementById('homens');
+const inputMulheres = document.getElementById('mulheres');
+const inputCriancas = document.getElementById('criancas');
+const botaoCalcular = document.getElementById('calcularBtn');
+const areaResultado = document.getElementById('areaResultado');
+const listaResultados = document.getElementById('listaResultados');
 
-// Nossos arrays com as partes da história
-const personagens = [
-    "Um cavaleiro amaldiçoado",
-    "Uma pirata com um mapa celestial",
-    "O último mago da Terra",
-    "Uma inventora de uma cidade a vapor",
-    "Um detetive que vê fantasmas",
-    "Uma inteligência artificial que sonha"
-];
+// --- 2. ADICIONAR O EVENTO DE CLIQUE AO BOTÃO ---
+// Quando o botão for clicado, a função 'calcular' será executada.
+botaoCalcular.addEventListener('click', calcular);
 
-const cenarios = [
-    "nas ruínas de uma cidade flutuante",
-    "a bordo de um trem que nunca para",
-    "numa floresta onde as árvores sussurram segredos",
-    "no coração de um império subaquático",
-    "num mercado negro de memórias",
-    "durante um inverno que dura séculos"
-];
+// --- 3. A FUNÇÃO PRINCIPAL: CALCULAR ---
+function calcular() {
+    // Pegar os valores dos inputs e converter para números inteiros
+    const numHomens = parseInt(inputHomens.value) || 0;
+    const numMulheres = parseInt(inputMulheres.value) || 0;
+    const numCriancas = parseInt(inputCriancas.value) || 0;
 
-const conflitos = [
-    "que precisa quebrar uma antiga profecia.",
-    "para encontrar uma fonte de poder esquecida.",
-    "enquanto foge de um caçador de recompensas implacável.",
-    "para entregar uma mensagem que pode impedir uma guerra.",
-    "que busca vingança pela traição de seu mentor.",
-    "para provar que uma lenda antiga é real."
-];
+    // --- LÓGICA DE CÁLCULO (AS VARIÁVEIS EM AÇÃO) ---
+    // Definimos variáveis 'const' para nossas regras de consumo.
+    // Essas regras são constantes, não mudam.
+    const carnePorHomem = 0.45; // 450g
+    const carnePorMulher = 0.30; // 300g
+    const carnePorCrianca = 0.20; // 200g
 
-// Adiciona o "ouvinte de evento" de clique ao botão.
-botaoGerar.addEventListener('click', gerarHistoria);
+    const linguicaPorPessoa = 0.25; // 250g
+    const paoDeAlhoPorAdulto = 2;
+    const paoDeAlhoPorCrianca = 1;
 
-// Adiciona um ouvinte para o FIM da animação.
-// Quando a animação de fade-in terminar, a classe é removida.
-// Isso garante que a animação possa ser disparada novamente no próximo clique.
-divHistoria.addEventListener('animationend', () => {
-    divHistoria.classList.remove('animar-resultado');
-});
+    const cervejaPorAdulto = 1.5; // 1.5L
+    const refriPorPessoa = 0.5; // 500ml
 
+    // Calculando os totais. Usamos 'let' porque o valor é calculado e atribuído aqui.
+    let totalCarne = (numHomens * carnePorHomem) + (numMulheres * carnePorMulher) + (numCriancas * carnePorCrianca);
+    let totalLinguica = (numHomens + numMulheres + numCriancas) * linguicaPorPessoa;
+    let totalPaoDeAlho = (numHomens * paoDeAlhoPorAdulto) + (numMulheres * paoDeAlhoPorAdulto) + (numCriancas * paoDeAlhoPorCrianca);
+    let totalCerveja = (numHomens + numMulheres) * cervejaPorAdulto;
+    let totalRefri = (numHomens + numMulheres + numCriancas) * refriPorPessoa;
 
-// Função principal que gera a história
-function gerarHistoria() {
-    // 1. SORTEIA UM ITEM DE CADA LISTA
-    const indicePersonagem = Math.floor(Math.random() * personagens.length);
-    const indiceCenario = Math.floor(Math.random() * cenarios.length);
-    const indiceConflito = Math.floor(Math.random() * conflitos.length);
-
-    // 2. GUARDA OS ITENS SORTEADOS EM VARIÁVEIS
-    const personagemEscolhido = personagens[indicePersonagem];
-    const cenarioEscolhido = cenarios[indiceCenario];
-    const conflitoEscolhido = conflitos[indiceConflito];
-
-    // 3. MONTA A FRASE FINAL
-    const historiaFinal = `<p>${personagemEscolhido} ${cenarioEscolhido} ${conflitoEscolhido}</p>`;
+    // --- 4. EXIBIR OS RESULTADOS NA TELA (MANIPULAÇÃO DO DOM) ---
     
-    // 4. COLOCA O RESULTADO NA TELA
-    divHistoria.innerHTML = historiaFinal;
-
-    // 5. ADICIONA A CLASSE PARA ATIVAR A ANIMAÇÃO DO CSS
-    divHistoria.classList.add('animar-resultado');
+    // Limpa a lista de resultados anterior para evitar duplicatas
+    listaResultados.innerHTML = '';
+    
+    // Cria os itens da lista e os insere no HTML
+    listaResultados.innerHTML += `<li>Carne Bovina: <strong>${totalCarne.toFixed(2)} kg</strong></li>`;
+    listaResultados.innerHTML += `<li>Linguiça: <strong>${totalLinguica.toFixed(2)} kg</strong></li>`;
+    listaResultados.innerHTML += `<li>Pão de Alho: <strong>${totalPaoDeAlho} unidades</strong></li>`;
+    listaResultados.innerHTML += `<li>Cerveja: <strong>${totalCerveja.toFixed(1)} L</strong></li>`;
+    listaResultados.innerHTML += `<li>Refrigerante: <strong>${totalRefri.toFixed(1)} L</strong></li>`;
+    
+    // Remove a classe 'hidden' para que a área de resultados apareça
+    areaResultado.classList.remove('hidden');
 }
