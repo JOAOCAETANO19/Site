@@ -1,1 +1,112 @@
+/* --- ESTILOS GERAIS DA PÁGINA --- */
 
+body {
+    background-color: #1a1a2e; 
+    color: #e0e0e0; 
+    font-family: Arial, sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0; 
+    text-align: center; 
+}
+
+/* --- O CONTAINER PRINCIPAL --- */
+
+.container {
+    max-width: 600px; 
+    padding: 40px; 
+}
+
+/* --- TÍTULOS E TEXTOS --- */
+
+h1 {
+    font-family: 'Cinzel', serif; 
+    font-size: 3em; 
+    color: #f7b733; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+    
+    /* APLICA A ANIMAÇÃO DE ENTRADA AO TÍTULO */
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: #c0c0c0;
+    margin-bottom: 40px;
+}
+
+/* --- O BOTÃO "MÁGICO" --- */
+
+button {
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(45deg, #f7b733, #fc4a1a);
+    color: #1a1a2e; 
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; 
+    box-shadow: 0 4px 15px rgba(247, 183, 51, 0.4); 
+}
+
+button:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 6px 20px rgba(247, 183, 51, 0.6); 
+}
+
+/* --- ÁREA DE RESULTADO DA HISTÓRIA --- */
+
+#historiaGerada {
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0.05); 
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #f7b733; 
+}
+
+#historiaGerada p {
+    font-size: 1.4em;
+    line-height: 1.6;
+}
+
+.placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* --- NOSSAS ANIMAÇÕES CUSTOMIZADAS (KEYFRAMES) --- */
+
+/* Animação 1: Para o Título (Surgindo de baixo para cima) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação 2: Para o Texto do Resultado (Surgindo suavemente) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Classe que será adicionada via JS para ativar a animação de resultado */
+.animar-resultado {
+    animation: fadeIn 0.8s ease-in;
+}
